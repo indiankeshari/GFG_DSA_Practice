@@ -26,6 +26,7 @@ Node *insert(Node *head, int pos, int key)
     curr = curr->next;
     while ()
     {
+        
     }
 }
 
