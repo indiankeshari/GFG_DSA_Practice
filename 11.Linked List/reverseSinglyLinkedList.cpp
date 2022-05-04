@@ -1,18 +1,17 @@
-#include <bits/stdc++.h>
+//! Not Completed Yet
+
+#include <iostream>
 using namespace std;
-#define PI 3.14159265
 
 class Node
 {
 public:
     int data;
     Node *next;
-    Node *prev;
     Node(int data)
     {
         this->data = data;
         next = NULL;
-        prev = NULL;
     }
 };
 
@@ -31,39 +30,40 @@ Node *insertBegin(Node *head, int data)
     Node *temp = new Node(data);
     if (head == NULL)
         return temp;
-    else
-    {
-        temp->next = head;
-        head->prev = temp;
-        return temp;
-    }
+    temp->next = head;
+    return temp;
 }
 
-Node *insertEnd(Node *head, int data)
+Node *reverse(Node *head)
 {
-    Node *temp = new Node(data);
     if (head == NULL)
-        return temp;
+        return NULL;
+    if (head->next == NULL)
+        return head;
+    Node *temp = head;
     Node *curr = head;
     while (curr != NULL)
     {
-        if (curr->next == NULL)
-        {
-            curr->next = temp;
-            temp->prev = curr;
-            break;
-        }
         curr = curr->next;
+        // head->next = curr;
+        // curr = head;
+        // head = temp;
+        // temp = temp->next;
     }
+    head = curr;
+    
+
     return head;
 }
 
 int main()
 {
     Node *head = NULL;
-    head = insertEnd(head, 10);
-    head = insertEnd(head, 20);
-    head = insertEnd(head, 30);
+    head = insertBegin(head, 11);
+    head = insertBegin(head, 21);
+    head = insertBegin(head, 31);
+    display(head);
+    head = reverse(head);
     display(head);
 
     return 0;

@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-#define PI 3.14159265
 
 class Node
 {
@@ -31,39 +30,37 @@ Node *insertBegin(Node *head, int data)
     Node *temp = new Node(data);
     if (head == NULL)
         return temp;
-    else
-    {
-        temp->next = head;
-        head->prev = temp;
-        return temp;
-    }
+    temp->next = head;
+    head->prev = temp;
+    return temp;
 }
 
-Node *insertEnd(Node *head, int data)
+Node *reverse(Node *head)
 {
-    Node *temp = new Node(data);
-    if (head == NULL)
-        return temp;
+    if (head == NULL || head->next == NULL)
+        return head;
+    Node *prev = NULL;
     Node *curr = head;
     while (curr != NULL)
     {
-        if (curr->next == NULL)
-        {
-            curr->next = temp;
-            temp->prev = curr;
-            break;
-        }
-        curr = curr->next;
+        prev = curr->prev;
+        curr->prev = curr->next;
+        curr->next = prev;
+        curr = curr->prev;
     }
-    return head;
+
+    return prev->prev;
 }
 
 int main()
 {
     Node *head = NULL;
-    head = insertEnd(head, 10);
-    head = insertEnd(head, 20);
-    head = insertEnd(head, 30);
+    head = insertBegin(head, 11);
+    head = insertBegin(head, 21);
+    head = insertBegin(head, 31);
+    head = insertBegin(head, 48);
+    display(head);
+    head = reverse(head);
     display(head);
 
     return 0;

@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-#define PI 3.14159265
 
 class Node
 {
@@ -24,19 +23,6 @@ void display(Node *head)
         head = head->next;
     }
     cout << endl;
-}
-
-Node *insertBegin(Node *head, int data)
-{
-    Node *temp = new Node(data);
-    if (head == NULL)
-        return temp;
-    else
-    {
-        temp->next = head;
-        head->prev = temp;
-        return temp;
-    }
 }
 
 Node *insertEnd(Node *head, int data)
